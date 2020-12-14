@@ -1,16 +1,29 @@
 from sys import argv
-from colorama import Fore, Back, Style
+
 if len(argv) != 1 and argv[1]=='-h':
     print('Usage \npython3 gigs.py <size> <output filename> <memory buffer> <-h>')
     quit()
 def verbose(txt):
-	if verb:
-		print(Fore.GREEN+'[Verbose] '+txt+Style.RESET_ALL)
+    if verb:
+        if nan:
+            print('[Verbose] '+txt)
+        else:
+            print(Fore.GREEN+'[Verbose] '+txt+Style.RESET_ALL)
 verb=False
 if len(argv) != 1 and argv[len(argv)-1] == '-v':
-	verb=True
-	verbose('Args : '+str(argv))
-	del argv[len(argv)-1]
+    nan=False
+    try:
+        from colorama import Fore, Back, Style
+    except ModuleNotFoundError:
+        import os
+        os.system('python3 -m pip install colorama')
+        try:
+            from colorama import Fore, Back, Style
+        except ModuleNotFoundError:
+            nan=True
+    verb=True
+    verbose('Args : '+str(argv))
+    del argv[len(argv)-1]
 
 def remplir(taille,nom,buffer=500000):
     f=open(nom,'wb')
