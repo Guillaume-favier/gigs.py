@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from sys import argv
 
 if len(argv) != 1 and argv[1]=='-h':
@@ -26,6 +27,8 @@ if len(argv) != 1 and argv[len(argv)-1] == '-v':
     del argv[len(argv)-1]
 
 def remplir(taille,nom,buffer=500000):
+    taille=int(taille)
+    buffer=int(buffer)
     f=open(nom,'wb')
     verbose('The file \'{}\' was created'.format(nom))
     #f.write(b'\xff'*taille)
