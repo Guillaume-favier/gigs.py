@@ -11,20 +11,22 @@ def verbose(txt):
         else:
             print(Fore.GREEN+'[Verbose] '+txt+Style.RESET_ALL)
 verb=False
-if len(argv) != 1 and argv[len(argv)-1] == '-v':
-    nan=False
-    try:
-        from colorama import Fore, Back, Style
-    except ModuleNotFoundError:
-        import os
-        os.system('python3 -m pip install colorama')
+for j in range(0,len(argv)):
+    if argv[j] == '-v':
+        nan=False
         try:
             from colorama import Fore, Back, Style
         except ModuleNotFoundError:
-            nan=True
-    verb=True
-    verbose('Args : '+str(argv))
-    del argv[len(argv)-1]
+            import os
+            os.system('python3 -m pip install colorama')
+            try:
+                from colorama import Fore, Back, Style
+            except ModuleNotFoundError:
+                nan=True
+        verb=True
+        verbose('Args : '+str(argv))
+        del argv[j]
+        break
 
 def remplir(taille,nom,buffer=500000):
     taille=int(taille)
