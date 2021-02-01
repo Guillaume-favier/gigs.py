@@ -60,4 +60,4 @@ else:
     taille=int(input('Taille du fichier : '))
     remplir(taille,'big-file.txt')
     print('Done !')
-    verbose('Tanks for using gigs.py. This softwear was created by Guillaume Favier.')
+verbose('Tanks for using gigs.py. This softwear was created by Guillaume Favier.')
