@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from sys import argv
+from bar import bar
 
 if len(argv) != 1 and argv[1]=='-h':
     print('Usage \npython3 gigs.py <size> <output filename> <memory buffer> <-h>')
@@ -31,6 +32,7 @@ for j in range(0,len(argv)):
 def remplir(taille,nom,buffer=500000):
     taille=int(taille)
     buffer=int(buffer)
+    c = bar(0,int(taille/buffer)," Creation of the file")
     f=open(nom,'wb')
     verbose('The file \'{}\' was created'.format(nom))
     #f.write(b'\xff'*taille)
@@ -42,14 +44,17 @@ def remplir(taille,nom,buffer=500000):
         left=taille
         for i in range(int(taille/buffer)+1):
             if left > buffer:
-                verbose('Adding {}o for the {} time'.format(str(buffer),str(i+1)))
+                
+                c.disp(i+1)
                 f.write(b'\xff'*buffer)
                 left -= buffer
             else:
+                print()
                 verbose('Adding {}o'.format(str(left)))
                 f.write(b'\xff'*left)
                 left = 0
                 break
+        print()
 
 if len(argv)==2:
     taille=argv[1]
